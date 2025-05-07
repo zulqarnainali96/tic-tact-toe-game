@@ -1,39 +1,27 @@
+const resetButton = document.querySelector(".reset-button");
+const player1_Score = document.querySelector(".player1-score");
+const player2_Score = document.querySelector(".player2-score");
+const allBoxes = document.querySelectorAll(".box")
+let player1 = "";
+let player2 = "";
+
 class TicTacToeGame {
-  static prevValue = "";
-  static nextValue = "";
-
-  constructor(xValue, oValue) {
-    this.xValue = xValue;
-    this.oValue = oValue;
+  constructor(allBoxes, player1_Score, player2_Score) {
+    this.player1_Score = player1_Score;
+    this.player2_Score = player2_Score;
   }
-  printValue(element, index, fullArray) {
-
-    if (element.textContent == "") {
-      element.textContent = this.xValue;
-      TicTacToeGame.prevValue = this.xValue;
-    } else if (
-      element.textContent == "" &&
-      TicTacToeGame.prevValue === this.xValue
-    ) {
-      element.textContent = this.oValue;
-      TicTacToeGame.prevValue = this.oValue;
-    }
-
-    // if(element.textContent == this.xValue && fullArray.indexOf(element) === index){
-    //   fullArray[index].textContent = this.xValue;
-    //   TicTacToeGame.prevValue = this.xValue
-    // }
+  resetGame() {
+    this.player1_Score.textContent = "0";
+    this.player2_Score.textContent = "0";
+  }
+  printValue(){
+    
   }
 }
 
-const oValue = "O";
-const xValue = "X";
-const box = document.querySelectorAll(".box");
-const tictactoe = new TicTacToeGame(xValue, oValue);
+const tictactoeGame = new TicTacToeGame(allBoxes,player1_Score, player2_Score);
 
-box.forEach((element, index, fullArray) => {
-  element.addEventListener("click", () => {
-    tictactoe.printValue(element, index, fullArray);
-    // element.nextElementSibling
-  });
+resetButton.addEventListener("click", () => {
+  tictactoeGame.resetGame();
 });
+tictactoeGame.printValue()
